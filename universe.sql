@@ -162,8 +162,9 @@ ALTER SEQUENCE public.planet_id_seq OWNED BY public.planet.planet_id;
 
 CREATE TABLE public.planet_types (
     planet_types_id integer NOT NULL,
-    planettyp character varying(40),
-    typdescription text
+    planettyp character varying(40) NOT NULL,
+    typdescription text,
+    name character varying(40)
 );
 
 
@@ -325,12 +326,12 @@ INSERT INTO public.planet VALUES (13, 'Pluto', 5, false, 2374.0, 1);
 -- Data for Name: planet_types; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.planet_types VALUES (1, 'Gesteinsplanet', 'Ein felsiger Planet, auch Tellur genannt, hat eine felsige Oberfläche und ist daher fest.');
-INSERT INTO public.planet_types VALUES (2, 'Gasriese', ' Diese Planeten werden so genannt, weil sie im Grunde Riesen sind und vollständig aus Gas bestehen (außer dem Kern).');
-INSERT INTO public.planet_types VALUES (3, 'Zwergplanet', 'Sehr kleine Planeten.');
-INSERT INTO public.planet_types VALUES (4, 'Gesteinsplanet', 'Bestehen ueberwiegend aus Gestain');
-INSERT INTO public.planet_types VALUES (5, 'Gasplanet', 'Bestehen ueberwiegend aus gasfoermigen Stoffen');
-INSERT INTO public.planet_types VALUES (6, 'Zwergplanet', 'Ein Zwergplanet ist ein Himmelskörper im Sonnensystem, der direkt die Sonne umkreist, aber nicht genug Masse hat, um seine Bahn von anderen Objekten freizuräumen.');
+INSERT INTO public.planet_types VALUES (1, 'Gesteinsplanet', 'Ein felsiger Planet, auch Tellur genannt, hat eine felsige Oberfläche und ist daher fest.', NULL);
+INSERT INTO public.planet_types VALUES (2, 'Gasriese', ' Diese Planeten werden so genannt, weil sie im Grunde Riesen sind und vollständig aus Gas bestehen (außer dem Kern).', NULL);
+INSERT INTO public.planet_types VALUES (3, 'Zwergplanet', 'Sehr kleine Planeten.', NULL);
+INSERT INTO public.planet_types VALUES (4, 'Gesteinsplanet', 'Bestehen ueberwiegend aus Gestain', NULL);
+INSERT INTO public.planet_types VALUES (5, 'Gasplanet', 'Bestehen ueberwiegend aus gasfoermigen Stoffen', NULL);
+INSERT INTO public.planet_types VALUES (6, 'Zwergplanet', 'Ein Zwergplanet ist ein Himmelskörper im Sonnensystem, der direkt die Sonne umkreist, aber nicht genug Masse hat, um seine Bahn von anderen Objekten freizuräumen.', NULL);
 
 
 --
@@ -442,6 +443,14 @@ ALTER TABLE ONLY public.planet
 
 ALTER TABLE ONLY public.planet_types
     ADD CONSTRAINT planet_types_pkey PRIMARY KEY (planet_types_id);
+
+
+--
+-- Name: planet_types planet_types_planet_types_id_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet_types
+    ADD CONSTRAINT planet_types_planet_types_id_key UNIQUE (planet_types_id);
 
 
 --
